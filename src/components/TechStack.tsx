@@ -18,7 +18,7 @@ const techList = [
   { name: "Tableau", icon: null, color: "#E97627" },
   { name: "Pandas", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg", color: "#150458" },
   { name: "NumPy", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg", color: "#013243" },
-  { name: "Matplotlib", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg", color: "#ffffff" }, // White logo needing dark bg? adjusting logic below
+  { name: "Matplotlib", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg", color: "#11557c" }, // White logo needing dark bg? adjusting logic below
   { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg", color: "#4479A1" },
   { name: "SQL", icon: null, color: "#00758F" },
   { name: "R", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg", color: "#276DC3" },
@@ -48,28 +48,22 @@ const createTextTexture = (text: string, color: string) => {
   const context = canvas.getContext("2d");
 
   if (context) {
-    // White background for all balls
+    // Plain White background
     context.fillStyle = "#ffffff";
-    context.beginPath();
-    context.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
-    context.fill();
-
-    // Colored border (brand color)
-    context.strokeStyle = color;
-    context.lineWidth = 20;
-    context.stroke();
+    context.fillRect(0, 0, size, size); // Fill entire rect, not just circle, for cleaner wrap
 
     // Text settings
     context.fillStyle = color; // Brand color text
     context.textAlign = "center";
     context.textBaseline = "middle";
 
-    // Responsive font size
-    const fontSize = text.length > 8 ? 50 : 80;
+    // Large, clear font
+    const fontSize = text.length > 8 ? 60 : 90;
     context.font = `bold ${fontSize}px Arial`;
 
+    // Scale for very long text
     if (text.length > 12) {
-      context.font = "bold 45px Arial";
+      context.font = "bold 50px Arial";
     }
 
     context.fillText(text, size / 2, size / 2);
