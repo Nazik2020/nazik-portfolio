@@ -191,12 +191,9 @@ const TechStackContent = ({ isActive }: { isActive: boolean }) => {
 
       return new THREE.MeshPhysicalMaterial({
         map: texture,
-        color: "#ffffff", // White ball
-        emissive: "#ffffff",
-        emissiveMap: texture,
-        emissiveIntensity: 0.2,
-        metalness: 0.2, // Less metallic to look like white plastic/ceramic
-        roughness: 0.3, // Smoother
+        color: "#ffffff",
+        metalness: 0.1,
+        roughness: 0.1,
         clearcoat: 0.5,
       });
     });
