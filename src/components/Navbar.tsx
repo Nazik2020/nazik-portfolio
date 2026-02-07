@@ -10,29 +10,38 @@ export let lenis: Lenis | null = null;
 
 const Navbar = () => {
   useEffect(() => {
-    // Initialize Lenis smooth scroll
-    lenis = new Lenis({
-      duration: 1.7,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 1.7,
-      touchMultiplier: 2,
-      infinite: false,
-    });
+    // Only initialize Lenis on desktop (not touch devices)
+    const isMobile = window.innerWidth <= 1024 || 'ontouchstart' in window;
 
-    // Start paused
-    lenis.stop();
+    if (!isMobile) {
+      lenis = new Lenis({
+        duration: 1.7,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: "vertical",
+        gestureOrientation: "vertical",
+        smoothWheel: true,
+        wheelMultiplier: 1.7,
+        touchMultiplier: 2,
+        infinite: false,
+      });
 
-    // Handle smooth scroll animation frame
-    function raf(time: number) {
-      lenis?.raf(time);
+      // Start paused
+      lenis.stop();
+
+      // Handle smooth scroll animation frame
+      function raf(time: number) {
+        lenis?.raf(time);
+        requestAnimationFrame(raf);
+      }
       requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
 
-    // Handle navigation links
+      // Handle resize
+      window.addEventListener("resize", () => {
+        lenis?.resize();
+      });
+    }
+
+    // Handle navigation links (works for both mobile and desktop)
     let links = document.querySelectorAll(".header ul a");
     links.forEach((elem) => {
       let element = elem as HTMLAnchorElement;
@@ -49,15 +58,11 @@ const Navbar = () => {
       });
     });
 
-    // Handle resize
-    window.addEventListener("resize", () => {
-      lenis?.resize();
-    });
-
     return () => {
       lenis?.destroy();
     };
   }, []);
+
   return (
     <>
       <div className="header">
