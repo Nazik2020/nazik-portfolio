@@ -203,17 +203,22 @@ body {
 
 @media screen and (max-width: 768px) {
   .techstack {
-    padding-top: 100px;
-    padding-bottom: 60px;
-    min-height: auto;
+    padding-top: 80px;
+    padding-bottom: 40px;
+    min-height: 70vh;
     height: auto;
   }
 
   .techstack h2 {
     position: relative;
     top: 0;
-    font-size: 32px;
-    margin-bottom: 20px;
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  .techstack canvas {
+    height: 50vh !important;
+    min-height: 300px;
   }
 
   .tech-list-mobile {
@@ -223,5 +228,22 @@ body {
   .tech-item {
     font-size: 12px;
     padding: 8px 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .techstack {
+    padding-top: 60px;
+    padding-bottom: 30px;
+    min-height: 60vh;
+  }
+
+  .techstack h2 {
+    font-size: 24px;
+  }
+
+  .techstack canvas {
+    height: 45vh !important;
+    min-height: 250px;
   }
 }
