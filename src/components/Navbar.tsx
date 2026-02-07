@@ -37,17 +37,20 @@ const Navbar = () => {
     links.forEach((elem) => {
       let element = elem as HTMLAnchorElement;
       element.addEventListener("click", (e) => {
-        if (window.innerWidth > 1024) {
-          e.preventDefault();
-          let elem = e.currentTarget as HTMLAnchorElement;
-          let section = elem.getAttribute("data-href");
-          if (section && lenis) {
-            const target = document.querySelector(section) as HTMLElement;
-            if (target) {
+        e.preventDefault();
+        let elem = e.currentTarget as HTMLAnchorElement;
+        let section = elem.getAttribute("data-href");
+        if (section) {
+          const target = document.querySelector(section) as HTMLElement;
+          if (target) {
+            if (lenis) {
               lenis.scrollTo(target, {
                 offset: 0,
                 duration: 1.5,
               });
+            } else {
+              // Fallback to standard smooth scroll
+              target.scrollIntoView({ behavior: 'smooth' });
             }
           }
         }
@@ -67,14 +70,7 @@ const Navbar = () => {
     <>
       <div className="header">
         <a href="/#" className="navbar-title" data-cursor="disable">
-          Logo
-        </a>
-        <a
-          href="mailto:example@mail.com"
-          className="navbar-connect"
-          data-cursor="disable"
-        >
-          example@mail.com
+          <img src="/nazik.jpg" alt="Mohamed Nazik" style={{ height: "45px", width: "45px", borderRadius: "50%", objectFit: "cover" }} />
         </a>
         <ul>
           <li>
