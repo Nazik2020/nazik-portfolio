@@ -33,35 +33,55 @@
 .contact-box {
   display: flex;
   flex-direction: column;
+  gap: 15px;
 }
 
 .contact-flex p {
-  margin-top: 10px;
+  margin-top: 5px;
   margin-bottom: 20px;
+  font-size: 18px;
+  opacity: 0.8;
 }
 
 a.contact-social {
-  font-size: 25px;
-  border-bottom: 1px solid #ccc;
+  font-size: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 5px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: fit-content;
+  gap: 10px;
+}
+
+a.contact-social:hover {
+  border-bottom: 1px solid var(--accentColor);
+  color: var(--accentColor);
+  transform: translateX(5px);
 }
 
 .contact-box h2 {
-  font-weight: 400;
-  font-size: 23px;
+  font-weight: 300;
+  font-size: 24px;
   margin: 0;
+  line-height: 1.4;
 }
 
 .contact-box h2>span {
   color: var(--accentColor);
+  font-weight: 600;
 }
 
 .contact-box h5 {
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
   line-height: 20px;
   display: flex;
-  gap: 10px;
-  opacity: 0.5;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.4;
+  margin-top: 10px;
 }
 
 @media only screen and (max-width: 1600px) {

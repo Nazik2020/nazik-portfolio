@@ -85,6 +85,8 @@ export const config = {
         email: "nasikmohamednzk2020@gmail.com",
         github: "https://github.com/Nazik2020",
         linkedin: "https://www.linkedin.com/in/nazikhassan11",
+        instagram: "https://www.instagram.com/",
+        facebook: "https://www.facebook.com/",
     },
     skills: {
         develop: {

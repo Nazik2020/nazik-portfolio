@@ -1,8 +1,10 @@
 import {
   FaGithub,
   FaLinkedinIn,
+  FaInstagram,
+  FaFacebook,
 } from "react-icons/fa6";
-import { BiEnvelope } from "react-icons/bi";
+
 import { config } from "../config";
 import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
@@ -70,10 +72,16 @@ const SocialIcons = () => {
           </a>
         </span>
         <span>
-          <a href={`mailto:${config.contact.email}`} target="_blank">
-            <BiEnvelope />
+          <a href={config.contact.instagram} target="_blank">
+            <FaInstagram />
           </a>
         </span>
+        <span>
+          <a href={config.contact.facebook} target="_blank">
+            <FaFacebook />
+          </a>
+        </span>
+
       </div>
       <a className="resume-button" href="#">
         <HoverLinks text="RESUME" />

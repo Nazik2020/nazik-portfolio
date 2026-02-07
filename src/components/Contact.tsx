@@ -103,6 +103,24 @@ const Contact = () => {
             >
               Linkedin <MdArrowOutward />
             </a>
+            <a
+              href={config.contact.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor="disable"
+              className="contact-social"
+            >
+              Instagram <MdArrowOutward />
+            </a>
+            <a
+              href={config.contact.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor="disable"
+              className="contact-social"
+            >
+              Facebook <MdArrowOutward />
+            </a>
 
           </div>
           <div className="contact-box">

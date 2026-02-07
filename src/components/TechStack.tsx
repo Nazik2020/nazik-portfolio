@@ -39,7 +39,7 @@ const techList = [
 // Determine valid image URLs for loading
 const imageUrls = techList.map(t => t.icon).filter(url => url !== null) as string[];
 
-// Helper to create a texture with the logo/text "stamped" on the front
+// Helper to create a texture with the logo/text "stamped" on the front AND back
 const createDecalTexture = (image: HTMLImageElement | null, text: string, color: string) => {
   const canvas = document.createElement("canvas");
   // 2:1 aspect ratio for equirectangular projection (covers whole sphere)
@@ -52,27 +52,29 @@ const createDecalTexture = (image: HTMLImageElement | null, text: string, color:
     context.fillStyle = "#ffffff";
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-    // 2. Determine "front" area
-    // For standard UV mapping, the center of the image maps to the "front" (or back, depending on rotation).
-    // Safest is center: x=512, y=256.
-
-    const centerX = canvas.width / 2;
+    // 2. Determine "front" and "back" areas
+    // To have logos on opposite sides, we use u=0.25 (side 1) and u=0.75 (side 2)
+    const centerX1 = canvas.width * 0.25;
+    const centerX2 = canvas.width * 0.75;
     const centerY = canvas.height / 2;
 
     if (image) {
-      // Draw Logo Image
+      // Draw Logo Image Twice
       // Scale it down so it doesn't wrap around the poles
       // 250px is about 1/4 of width (90 degrees), perfect for a "spot" logo
       const size = 250;
-      context.drawImage(image, centerX - size / 2, centerY - size / 2, size, size);
+
+      // Side 1
+      context.drawImage(image, centerX1 - size / 2, centerY - size / 2, size, size);
+      // Side 2
+      context.drawImage(image, centerX2 - size / 2, centerY - size / 2, size, size);
     } else {
-      // Draw Text
+      // Draw Text Twice
       context.fillStyle = color;
       context.textAlign = "center";
       context.textBaseline = "middle";
 
       // Large, clear font
-      // 140px on 512px height is roughly equivalent to previous ratios but higher res
       const fontSize = text.length > 8 ? 120 : 160;
       context.font = `bold ${fontSize}px Arial`;
 
@@ -80,7 +82,10 @@ const createDecalTexture = (image: HTMLImageElement | null, text: string, color:
         context.font = "bold 100px Arial";
       }
 
-      context.fillText(text, centerX, centerY);
+      // Side 1
+      context.fillText(text, centerX1, centerY);
+      // Side 2
+      context.fillText(text, centerX2, centerY);
     }
   }
   return new THREE.CanvasTexture(canvas);

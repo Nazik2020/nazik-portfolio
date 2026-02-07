@@ -351,7 +351,8 @@ h2.landing-info-h2 {
     left: 0;
     margin: auto;
     transform: none;
-    width: 60vh;
+    width: 50vh;
+    max-width: 500px;
   }
 
   .character-model::after,
