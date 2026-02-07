@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { useRef, useMemo, useState, useEffect } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import { EffectComposer, N8AO } from "@react-three/postprocessing";
 import {
@@ -11,16 +11,36 @@ import {
   RapierRigidBody,
 } from "@react-three/rapier";
 
-// User's tech list
+// Tech List with Logo Icons (DevIcon) and Brand Colors
 const techList = [
-  "Python", "Power BI", "Tableau", "Pandas", "NumPy", "Matplotlib",
-  "MySQL", "SQL", "R", "Jupyter", "Anaconda", "Git/GitHub",
-  "VS Code", "Google Colab", "scikit-learn", "React Native",
-  "TypeScript", "Django", "PHP", "Azure"
+  { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", color: "#3776AB" },
+  { name: "Power BI", icon: null, color: "#F2C811" }, // No official simple icon on devicon
+  { name: "Tableau", icon: null, color: "#E97627" },
+  { name: "Pandas", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg", color: "#150458" },
+  { name: "NumPy", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg", color: "#013243" },
+  { name: "Matplotlib", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg", color: "#ffffff" }, // White logo needing dark bg? adjusting logic below
+  { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg", color: "#4479A1" },
+  { name: "SQL", icon: null, color: "#00758F" },
+  { name: "R", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg", color: "#276DC3" },
+  { name: "Jupyter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original-wordmark.svg", color: "#F37626" },
+  { name: "Anaconda", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/anaconda/anaconda-original.svg", color: "#44A833" },
+  { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", color: "#F05032" },
+  { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg", color: "#181717" },
+  { name: "VS Code", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg", color: "#007ACC" },
+  { name: "Google Colab", icon: null, color: "#F9AB00" },
+  { name: "scikit-learn", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg", color: "#F7931E" },
+  { name: "React Native", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", color: "#61DAFB" },
+  { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", color: "#3178C6" },
+  { name: "Django", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg", color: "#092E20" },
+  { name: "PHP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg", color: "#777BB4" },
+  { name: "Azure", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg", color: "#0078D4" },
 ];
 
-// Helper to create text texture dynamically
-const createTextTexture = (text: string) => {
+// Determine valid image URLs for loading
+const imageUrls = techList.map(t => t.icon).filter(url => url !== null) as string[];
+
+// Helper to create text texture dynamically for fallbacks
+const createTextTexture = (text: string, color: string) => {
   const canvas = document.createElement("canvas");
   const size = 512;
   canvas.width = size;
@@ -28,31 +48,28 @@ const createTextTexture = (text: string) => {
   const context = canvas.getContext("2d");
 
   if (context) {
-    const hue = Math.floor(Math.random() * 360);
-
-    // Colorful background
-    context.fillStyle = `hsl(${hue}, 40%, 25%)`;
+    // White background for all balls
+    context.fillStyle = "#ffffff";
     context.beginPath();
     context.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
     context.fill();
 
-    // Lighter border
-    context.strokeStyle = `hsl(${hue}, 60%, 60%)`;
-    context.lineWidth = 15;
+    // Colored border (brand color)
+    context.strokeStyle = color;
+    context.lineWidth = 20;
     context.stroke();
 
     // Text settings
-    context.fillStyle = "#ffffff";
+    context.fillStyle = color; // Brand color text
     context.textAlign = "center";
     context.textBaseline = "middle";
 
-    // Responsive font size based on text length
-    const fontSize = text.length > 8 ? 50 : 70;
+    // Responsive font size
+    const fontSize = text.length > 8 ? 50 : 80;
     context.font = `bold ${fontSize}px Arial`;
 
-    // Scale down very long text further if needed
     if (text.length > 12) {
-      context.font = "bold 40px Arial";
+      context.font = "bold 45px Arial";
     }
 
     context.fillText(text, size / 2, size / 2);
@@ -157,6 +174,58 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
   );
 }
 
+const TechStackContent = ({ isActive }: { isActive: boolean }) => {
+  // Load all images at once
+  const loadedTextures = useLoader(THREE.TextureLoader, imageUrls);
+
+  // Map textures to tech list
+  const materials = useMemo(() => {
+    let imgIndex = 0;
+
+    return techList.map((tech) => {
+      let texture;
+
+      if (tech.icon) {
+        // Use loaded image
+        texture = loadedTextures[imgIndex];
+        imgIndex++;
+        // Ensure image texture wraps correctly if needed, but for simple mapping standard is fine
+      } else {
+        // Generate text texture
+        texture = createTextTexture(tech.name, tech.color);
+      }
+
+      return new THREE.MeshPhysicalMaterial({
+        map: texture,
+        color: "#ffffff", // White ball
+        emissive: "#ffffff",
+        emissiveMap: texture,
+        emissiveIntensity: 0.2,
+        metalness: 0.2, // Less metallic to look like white plastic/ceramic
+        roughness: 0.3, // Smoother
+        clearcoat: 0.5,
+      });
+    });
+  }, [loadedTextures]);
+
+  return (
+    <Physics gravity={[0, 0, 0]}>
+      <Pointer isActive={isActive} />
+      {/* Map through tech list to create a sphere for each tool */}
+      {techList.map((_, i) => (
+        <SphereGeo
+          key={i}
+          vec={new THREE.Vector3()}
+          scale={[0.8, 1, 0.9, 1.1, 0.8][Math.floor(Math.random() * 5)]}
+          r={THREE.MathUtils.randFloatSpread}
+          material={materials[i]}
+          isActive={isActive}
+        />
+      ))}
+    </Physics>
+  );
+};
+
 const TechStack = () => {
   const [isActive, setIsActive] = useState(false);
 
@@ -191,22 +260,6 @@ const TechStack = () => {
     };
   }, []);
 
-  // Generate materials for each tech item with unique colors/text
-  const materials = useMemo(() => {
-    return techList.map((tech) => {
-      const texture = createTextTexture(tech);
-      return new THREE.MeshPhysicalMaterial({
-        map: texture,
-        emissive: "#ffffff",
-        emissiveMap: texture,
-        emissiveIntensity: 0.2,
-        metalness: 0.5,
-        roughness: 0.7,
-        clearcoat: 0.1,
-      });
-    });
-  }, []); // Generate once on mount
-
   return (
     <div className="techstack">
       <h2>My Data Stack</h2>
@@ -231,21 +284,8 @@ const TechStack = () => {
         />
         <directionalLight position={[0, 5, -4]} intensity={2} />
 
-        <Physics gravity={[0, 0, 0]}>
-          <Pointer isActive={isActive} />
-
-          {/* Map through tech list to create a sphere for each tool */}
-          {techList.map((_, i) => (
-            <SphereGeo
-              key={i}
-              vec={new THREE.Vector3()}
-              scale={[0.8, 1, 0.9, 1.1, 0.8][Math.floor(Math.random() * 5)]}
-              r={THREE.MathUtils.randFloatSpread}
-              material={materials[i]} // Assign specific material for this tech
-              isActive={isActive}
-            />
-          ))}
-        </Physics>
+        {/* Render content inside Suspense for useLoader */}
+        <TechStackContent isActive={isActive} />
 
         <Environment
           files={import.meta.env.BASE_URL + "models/char_enviorment.hdr"}
