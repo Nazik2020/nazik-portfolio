@@ -69,7 +69,7 @@ const Work = () => {
                 <h4>Tools and features</h4>
                 <p>{project.technologies}</p>
               </div>
-              <WorkImage image={project.image} alt={project.title} />
+              <WorkImage image={import.meta.env.BASE_URL + project.image.slice(1)} alt={project.title} />
             </div>
           ))}
         </div>

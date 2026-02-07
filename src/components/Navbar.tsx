@@ -70,7 +70,7 @@ const Navbar = () => {
     <>
       <div className="header">
         <a href="/#" className="navbar-title" data-cursor="disable">
-          <img src="/nazik.jpg" alt="Mohamed Nazik" style={{ height: "45px", width: "45px", borderRadius: "50%", objectFit: "cover" }} />
+          <img src={import.meta.env.BASE_URL + "nazik.jpg"} alt="Mohamed Nazik" style={{ height: "45px", width: "45px", borderRadius: "50%", objectFit: "cover" }} />
         </a>
         <ul>
           <li>
