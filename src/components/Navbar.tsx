@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
@@ -9,7 +9,18 @@ gsap.registerPlugin(ScrollTrigger);
 export let lenis: Lenis | null = null;
 
 const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 50;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
     // Only initialize Lenis on desktop (not touch devices)
     const isMobile = window.innerWidth <= 1024 || 'ontouchstart' in window;
 
@@ -65,7 +76,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="header">
+      <div className={`header ${scrolled ? "scrolled" : ""}`}>
         <a href="/#" className="navbar-title" data-cursor="disable">
           <img src={import.meta.env.BASE_URL + "nazik.jpg"} alt="Mohamed Nazik" style={{ height: "65px", width: "65px", borderRadius: "50%", objectFit: "cover", border: "2px solid rgba(255,255,255,0.1)", boxShadow: "0 0 10px rgba(0,0,0,0.5)" }} />
         </a>
