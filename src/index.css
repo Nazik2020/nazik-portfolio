@@ -35,8 +35,12 @@ h6 {
   font-family: "Geist", sans-serif;
 }
 
+html,
 body {
   overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 a {

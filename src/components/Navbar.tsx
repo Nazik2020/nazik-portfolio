@@ -38,20 +38,12 @@ const Navbar = () => {
       let element = elem as HTMLAnchorElement;
       element.addEventListener("click", (e) => {
         e.preventDefault();
-        let elem = e.currentTarget as HTMLAnchorElement;
-        let section = elem.getAttribute("data-href");
+        let section = element.getAttribute("data-href") || element.getAttribute("href");
         if (section) {
           const target = document.querySelector(section) as HTMLElement;
           if (target) {
-            if (lenis) {
-              lenis.scrollTo(target, {
-                offset: 0,
-                duration: 1.5,
-              });
-            } else {
-              // Fallback to standard smooth scroll
-              target.scrollIntoView({ behavior: 'smooth' });
-            }
+            // Use native scrollIntoView for better mobile support
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         }
       });
