@@ -39,34 +39,49 @@ const techList = [
 // Determine valid image URLs for loading
 const imageUrls = techList.map(t => t.icon).filter(url => url !== null) as string[];
 
-// Helper to create text texture dynamically for fallbacks
-const createTextTexture = (text: string, color: string) => {
+// Helper to create a texture with the logo/text "stamped" on the front
+const createDecalTexture = (image: HTMLImageElement | null, text: string, color: string) => {
   const canvas = document.createElement("canvas");
-  const size = 512;
-  canvas.width = size;
-  canvas.height = size;
+  // 2:1 aspect ratio for equirectangular projection (covers whole sphere)
+  canvas.width = 1024;
+  canvas.height = 512;
   const context = canvas.getContext("2d");
 
   if (context) {
-    // Plain White background
+    // 1. Fill entire ball with white
     context.fillStyle = "#ffffff";
-    context.fillRect(0, 0, size, size); // Fill entire rect, not just circle, for cleaner wrap
+    context.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Text settings
-    context.fillStyle = color; // Brand color text
-    context.textAlign = "center";
-    context.textBaseline = "middle";
+    // 2. Determine "front" area
+    // For standard UV mapping, the center of the image maps to the "front" (or back, depending on rotation).
+    // Safest is center: x=512, y=256.
 
-    // Large, clear font
-    const fontSize = text.length > 8 ? 60 : 90;
-    context.font = `bold ${fontSize}px Arial`;
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
 
-    // Scale for very long text
-    if (text.length > 12) {
-      context.font = "bold 50px Arial";
+    if (image) {
+      // Draw Logo Image
+      // Scale it down so it doesn't wrap around the poles
+      // 250px is about 1/4 of width (90 degrees), perfect for a "spot" logo
+      const size = 250;
+      context.drawImage(image, centerX - size / 2, centerY - size / 2, size, size);
+    } else {
+      // Draw Text
+      context.fillStyle = color;
+      context.textAlign = "center";
+      context.textBaseline = "middle";
+
+      // Large, clear font
+      // 140px on 512px height is roughly equivalent to previous ratios but higher res
+      const fontSize = text.length > 8 ? 120 : 160;
+      context.font = `bold ${fontSize}px Arial`;
+
+      if (text.length > 12) {
+        context.font = "bold 100px Arial";
+      }
+
+      context.fillText(text, centerX, centerY);
     }
-
-    context.fillText(text, size / 2, size / 2);
   }
   return new THREE.CanvasTexture(canvas);
 };
@@ -169,8 +184,10 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
 }
 
 const TechStackContent = ({ isActive }: { isActive: boolean }) => {
-  // Load all images at once
-  const loadedTextures = useLoader(THREE.TextureLoader, imageUrls);
+  // Load images with cross-origin for canvas manipulation
+  const loadedTextures = useLoader(THREE.TextureLoader, imageUrls, (loader) => {
+    loader.setCrossOrigin("anonymous");
+  });
 
   // Map textures to tech list
   const materials = useMemo(() => {
@@ -180,13 +197,13 @@ const TechStackContent = ({ isActive }: { isActive: boolean }) => {
       let texture;
 
       if (tech.icon) {
-        // Use loaded image
-        texture = loadedTextures[imgIndex];
+        // Get the raw image from the loaded texture
+        const img = loadedTextures[imgIndex].image;
+        texture = createDecalTexture(img, tech.name, tech.color);
         imgIndex++;
-        // Ensure image texture wraps correctly if needed, but for simple mapping standard is fine
       } else {
-        // Generate text texture
-        texture = createTextTexture(tech.name, tech.color);
+        // Text fallback
+        texture = createDecalTexture(null, tech.name, tech.color);
       }
 
       return new THREE.MeshPhysicalMaterial({
