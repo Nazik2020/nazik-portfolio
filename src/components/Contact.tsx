@@ -9,6 +9,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
   useEffect(() => {
+    // Skip animation on mobile/touch devices - show content immediately
+    const isMobile = window.innerWidth <= 1024 || 'ontouchstart' in window;
+
+    if (isMobile) {
+      // On mobile, just show everything immediately
+      gsap.set(".contact-section h3, .contact-box", { opacity: 1, y: 0 });
+      return;
+    }
+
+    // Desktop: Use scroll-triggered animation
     const contactTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: ".contact-section",
