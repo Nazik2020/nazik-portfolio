@@ -1,177 +1,113 @@
 .contact-section {
-  margin: auto;
-  padding-bottom: 150px;
-  margin-top: 0;
-  position: relative;
-  z-index: 1;
+  padding: 100px 0 0 0;
   background-color: var(--backgroundColor);
-  min-height: 60vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  position: relative;
+  z-index: 5;
 }
 
-.contact-section h3 {
-  font-size: 60px;
-  font-weight: 400;
-  text-transform: uppercase;
-  margin: 0;
-  margin-bottom: 40px;
+.contact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
 }
 
-.contact-flex {
+.contact-flex-new {
   display: flex;
   justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
 }
 
-.contact-flex h4 {
-  font-weight: 500;
-  margin: 0;
-  opacity: 0.6;
-}
-
-.contact-box {
+.contact-col {
+  flex: 1;
+  min-width: 250px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-}
-
-.contact-flex p {
-  margin-top: 5px;
-  margin-bottom: 20px;
-  font-size: 18px;
-  opacity: 0.8;
-}
-
-a.contact-social {
-  font-size: 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  padding-bottom: 5px;
-  transition: all 0.3s ease;
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: fit-content;
-  gap: 10px;
 }
 
-a.contact-social:hover {
-  border-bottom: 1px solid var(--accentColor);
-  color: var(--accentColor);
-  transform: translateX(5px);
-}
-
-.contact-box h2 {
-  font-weight: 300;
+.contact-col-title {
+  font-family: "Geist", sans-serif;
   font-size: 24px;
-  margin: 0;
-  line-height: 1.4;
-}
-
-.contact-box h2>span {
-  color: var(--accentColor);
   font-weight: 600;
+  color: #fff;
+  margin: 0 0 24px;
 }
 
-.contact-box h5 {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 20px;
+.contact-col-desc {
+  font-size: 15px;
+  color: #aaa;
+  line-height: 1.6;
+  text-align: center;
+  margin: 0;
+  max-width: 320px;
+}
+
+.contact-links-grid {
+  display: flex;
+  justify-content: center;
+  gap: 12px 24px;
+  flex-wrap: wrap;
+  max-width: 300px;
+}
+
+.contact-link-item {
+  color: #bbb;
+  text-decoration: none;
+  font-size: 15px;
+  transition: color 0.3s;
+}
+
+.contact-link-item:hover {
+  color: #cab4f3;
+}
+
+.contact-social-flex {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.contact-social-bubble {
   display: flex;
   align-items: center;
-  gap: 8px;
-  opacity: 0.4;
-  margin-top: 10px;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #cab4f3;
+  color: #fff;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  background-color: transparent;
 }
 
-@media only screen and (max-width: 1600px) {
-  .contact-section h3 {
-    font-size: 50px;
-  }
-
-  .contact-box h2 {
-    font-size: 20px;
-  }
-
-  a.contact-social {
-    font-size: 22px;
-  }
+.contact-social-bubble:hover {
+  background-color: #cab4f3;
+  color: #000;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(202, 180, 243, 0.3);
 }
 
-@media only screen and (max-width: 1300px) {
-  .contact-section h3 {
-    font-size: 40px;
-  }
+.contact-footer-bottom {
+  text-align: center;
+  padding: 30px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
 
-  .contact-box h2 {
-    font-size: 18px;
-  }
-
-  a.contact-social {
-    font-size: 20px;
-  }
-
-  .contact-flex p {
-    margin-top: 0px;
-  }
+.contact-footer-bottom p {
+  color: #888;
+  font-size: 14px;
+  margin: 0;
 }
 
 @media only screen and (max-width: 900px) {
-  .contact-flex {
+  .contact-flex-new {
     flex-direction: column;
-    gap: 30px;
-  }
-
-  .contact-flex p {
-    margin-bottom: 0px;
-  }
-
-  .contact-flex h4 {
-    margin-top: 15px;
-  }
-
-  .contact-section {
-    margin-top: 40px;
-    padding: 40px 20px 80px;
-    min-height: auto;
-    width: 100%;
-    max-width: 100%;
-    visibility: visible !important;
-    opacity: 1 !important;
-    display: block !important;
-    z-index: 100;
-  }
-
-  .contact-section h3 {
-    font-size: 28px;
-    margin-bottom: 25px;
-  }
-
-  .contact-container {
-    width: 100%;
-    max-width: calc(100% - 40px);
-    margin: 0 auto;
-  }
-
-  .contact-box h2 {
-    font-size: 16px;
-  }
-
-  a.contact-social {
-    font-size: 18px;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .contact-section {
-    padding: 30px 15px 60px;
-  }
-
-  .contact-section h3 {
-    font-size: 24px;
-  }
-
-  .contact-container {
-    max-width: calc(100% - 30px);
+    align-items: center;
+    gap: 50px;
   }
 }

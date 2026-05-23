@@ -1,71 +1,121 @@
-import { PropsWithChildren, useEffect, useState } from "react";
 import "./styles/Landing.css";
 import { config } from "../config";
+import profileImg from "../assets/profile.jpg";
+import cvPdf from "../assets/Mohamed_Nazik_CV (2).pdf";
+import { useState, useEffect } from "react";
 
-const Landing = ({ children }: PropsWithChildren) => {
-  const nameParts = config.developer.fullName.split(" ");
-  const firstName = nameParts[0] || config.developer.name;
-  const lastName = nameParts.slice(1).join(" ") || "";
+const titles = ["DATA SCIENTIST", "DATA ANALYST", "AI/ML ENGINEER"];
 
-  // Titles with line breaks for two-line display
-  const titles = ["Data\nScientist", "Data\nAnalyst", "AI/ML\nEngineer"];
-  const [text, setText] = useState("");
+const Landing = () => {
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
-  const [loopNum, setLoopNum] = useState(0);
-  const [typingSpeed, setTypingSpeed] = useState(150);
 
   useEffect(() => {
-    const handleType = () => {
-      const i = loopNum % titles.length;
-      const fullText = titles[i];
+    const timeout = setTimeout(() => {
+      const fullText = titles[currentTitleIndex];
 
-      setText(
-        isDeleting
-          ? fullText.substring(0, text.length - 1)
-          : fullText.substring(0, text.length + 1)
-      );
-
-      setTypingSpeed(isDeleting ? 30 : 150);
-
-      if (!isDeleting && text === fullText) {
-        setTimeout(() => setIsDeleting(true), 2500); // Longer pause (2.5 seconds)
-      } else if (isDeleting && text === "") {
-        setIsDeleting(false);
-        setLoopNum(loopNum + 1);
-        setTimeout(() => { }, 800); // Brief pause before next title
+      if (!isDeleting) {
+        setCurrentText(fullText.substring(0, currentText.length + 1));
+        if (currentText === fullText) {
+          setTimeout(() => setIsDeleting(true), 2000); // Pause before deleting
+        }
+      } else {
+        setCurrentText(fullText.substring(0, currentText.length - 1));
+        if (currentText === "") {
+          setIsDeleting(false);
+          setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
+        }
       }
-    };
+    }, isDeleting ? 50 : 100); // Typing speed vs deleting speed
 
-    const timer = setTimeout(handleType, typingSpeed);
-
-    return () => clearTimeout(timer);
-  }, [text, isDeleting, loopNum, typingSpeed, titles]);
+    return () => clearTimeout(timeout);
+  }, [currentText, isDeleting, currentTitleIndex]);
 
   return (
     <>
-      <div className="landing-section" id="landingDiv">
+      <section className="landing-section" id="about">
+        {/* Background radial glow */}
+        <div className="landing-hero-glow" />
+
         <div className="landing-container">
-          {/* Name Section - Left Side */}
-          <div className="landing-intro">
-            <h2>Hello! I'm</h2>
-            <h1>
-              {firstName.toUpperCase()}
-              <br />
-              <span>{lastName.toUpperCase()}</span>
+          {/* ── LEFT ── */}
+          <div className="landing-left">
+            <p className="landing-tag">DATA SCIENCE • MACHINE LEARNING</p>
+            <h1 className="landing-name">
+              {config.developer.fullName.toUpperCase()},
+              <span>{currentText}<span className="typing-cursor">|</span></span>
             </h1>
+            <p className="landing-desc">
+              Third-year Computer Science undergraduate focused on Data Science and Machine Learning. Skilled in data analysis, predictive modeling, and dashboard development, with a passion for solving real-world problems using data. As a Microsoft Learn Student Ambassador, I actively engage in learning, sharing knowledge, and contributing to the tech community.
+            </p>
+            <div className="landing-btns">
+              <a href="#work" className="btn-primary">
+                VIEW PROJECTS&nbsp; →
+              </a>
+              <a href="#contact" className="btn-secondary">
+                CONTACT ME
+              </a>
+            </div>
           </div>
-          {/* Profession Section - Right Side */}
-          <div className="landing-info">
-            <h2 className="landing-info-h2">
-              <div className="landing-h2-1" style={{ opacity: 1, top: 10, position: 'relative', whiteSpace: 'pre-line' }}>
-                {text}
-                <span className="cursor-blink">|</span>
+
+          {/* ── RIGHT ── */}
+          <div className="landing-right">
+            <div className="landing-photo-frame rect-frame">
+              {/* Abstract line arts (matches image 1 expected style) */}
+              <div className="rect-wireframe skew-1">
+                <div className="rect-node node-tl" />
+                <div className="rect-node node-br" />
               </div>
-            </h2>
+
+              <div className="rect-wireframe skew-2">
+                <div className="rect-node node-tr" />
+                <div className="rect-node node-bl" />
+              </div>
+
+              {/* Decorative behind-frame requested by user */}
+              <div className="photo-bg-frame" />
+
+              {/* Photo */}
+              <div className="photo-rect">
+                <img
+                  src={profileImg}
+                  alt={config.developer.fullName}
+                  className="photo-img"
+                />
+              </div>
+            </div>
+            {/* Bar chart decorative card */}
+            <div className="float-chart">
+              <div className="chart-bars-wrap">
+                <div className="chart-bar" style={{ height: "40%" }} />
+                <div className="chart-bar bar-secondary" style={{ height: "100%" }} />
+                <div className="chart-bar bar-tertiary" style={{ height: "66%" }} />
+              </div>
+            </div>
           </div>
         </div>
-        {children}
-      </div>
+      </section>
+
+      {/* Global Floating Badges */}
+      <a
+        href={cvPdf}
+        target="_blank"
+        rel="noreferrer"
+        className="badge-resume"
+      >
+        <span style={{
+          fontSize: "50px"
+        }}>🗎</span>
+        RESUME
+      </a>
+
+
+
+      {/* Background glow blobs */}
+      <div className="landing-circle1" />
+      <div className="landing-circle2" />
+      <div className="nav-fade" />
     </>
   );
 };

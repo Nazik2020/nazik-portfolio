@@ -157,7 +157,7 @@ export function setAllTimeline() {
       0
     )
     .fromTo(
-      ".career-info-box",
+      ".career-item-linear",
       { opacity: 0 },
       { opacity: 1, stagger: 0.1, duration: 0.5 },
       0

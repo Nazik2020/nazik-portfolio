@@ -3,28 +3,28 @@ import { config } from "../config";
 
 const Career = () => {
   return (
-    <div className="career-section section-container">
-      <div className="career-container">
+    <div id="career" className="career-section section-container">
+      <div className="career-container" style={{ width: "100%" }}>
         <h2>
-          My career <span>&</span>
-          <br /> experience
+          My Career <span>&</span>
+          <br /> Experience
         </h2>
-        <div className="career-info">
-          <div className="career-timeline">
-            <div className="career-dot"></div>
-          </div>
-          {config.experiences.map((exp, index) => (
-            <div key={index} className="career-info-box">
-              <div className="career-info-in">
-                <div className="career-role">
-                  <h4>{exp.position}</h4>
-                  <h5>{exp.company}</h5>
-                </div>
-                <h3>{exp.period.includes("Present") ? "NOW" : exp.period.split(" - ")[1]}</h3>
+        <div className="career-info-left-aligned">
+          <div className="career-timeline"></div>
+          {config.experiences.map((exp, index) => {
+            const isLast = index === config.experiences.length - 1;
+            return (
+              <div key={index} className="career-item-linear">
+                <div className={`career-static-dot ${(isLast || exp.color === "red") ? "career-static-dot-red" : ""}`}></div>
+                <span className={`career-date-linear ${(isLast || exp.color === "red") ? "career-date-red" : ""}`}>
+                  {exp.period}
+                </span>
+                <h3 className="career-title-linear">{exp.position}</h3>
+                {exp.company && <h4 className="career-company-linear">{exp.company}</h4>}
+                <p className="career-desc-linear">{exp.description}</p>
               </div>
-              <p>{exp.description}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

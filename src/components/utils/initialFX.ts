@@ -3,7 +3,6 @@ import gsap from "gsap";
 import { lenis } from "../Navbar";
 
 export function initialFX() {
-  document.body.style.overflowY = "auto";
   if (lenis) {
     lenis.start();
   }

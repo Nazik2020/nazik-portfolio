@@ -274,7 +274,7 @@ const TechStack = () => {
   }, []);
 
   return (
-    <div className="techstack">
+    <div className="techstack" id="datastack">
       <h2>My Data Stack</h2>
 
       {/* 3D Canvas - Visible on Mobile & Desktop */}

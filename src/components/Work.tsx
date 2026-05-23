@@ -1,75 +1,68 @@
+import { FiExternalLink } from "react-icons/fi";
 import "./styles/Work.css";
-import WorkImage from "./WorkImage";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect } from "react";
 import { config } from "../config";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Work = () => {
   useEffect(() => {
-    let translateX: number = 0;
-
-    function setTranslateX() {
-      const box = document.getElementsByClassName("work-box");
-      if (box.length === 0) return;
-      const rectLeft = document
-        .querySelector(".work-container")!
-        .getBoundingClientRect().left;
-      const rect = box[0].getBoundingClientRect();
-      const parentWidth = box[0].parentElement!.getBoundingClientRect().width;
-      let padding: number =
-        parseInt(window.getComputedStyle(box[0]).padding) / 2;
-      translateX = rect.width * box.length - (rectLeft + parentWidth) + padding;
-    }
-
-    setTranslateX();
-
-    let timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".work-section",
-        start: "top top",
-        end: `+=${translateX}`, // Use actual scroll width
-        scrub: true,
-        pin: true,
-        id: "work",
-      },
-    });
-
-    timeline.to(".work-flex", {
-      x: -translateX,
-      ease: "none",
-    });
-
-    // Clean up
+    // The "reveal" animation for these cards is handled centrally in MainContainer.tsx
     return () => {
-      timeline.kill();
       ScrollTrigger.getById("work")?.kill();
     };
   }, []);
+
   return (
     <div className="work-section" id="work">
+      <h2 className="work-section-title">
+        My <span>Projects</span>
+      </h2>
+      
       <div className="work-container section-container">
-        <h2>
-          My <span>Work</span>
-        </h2>
-        <div className="work-flex">
-          {config.projects.map((project, index) => (
-            <div className="work-box" key={project.id}>
-              <div className="work-info">
-                <div className="work-title">
-                  <h3>0{index + 1}</h3>
-
-                  <div>
-                    <h4>{project.title}</h4>
-                    <p>{project.category}</p>
-                  </div>
+        <div className="project-grid">
+          {config.projects.map((project) => (
+            <div className="project-card" key={project.id}>
+              {/* Top: Image + Category Badge */}
+              <div className="project-card-image">
+                <a href={project.link} target="_blank" rel="noreferrer">
+                  <img src={project.image} alt={project.title} />
+                </a>
+                <div className="project-category-badge">
+                  {project.category}
                 </div>
-                <h4>Tools and features</h4>
-                <p>{project.technologies}</p>
               </div>
-              <WorkImage image={import.meta.env.BASE_URL + project.image.slice(1)} alt={project.title} />
+
+              {/* Bottom: Content */}
+              <div className="project-card-info">
+                <div className="project-card-header">
+                  <a href={project.link} target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "inherit" }}>
+                    <h3>{project.title}</h3>
+                  </a>
+                  <a 
+                    href={project.link} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="project-link-icon"
+                  >
+                    <FiExternalLink />
+                  </a>
+                </div>
+                
+                <p className="project-description">
+                  {project.description}
+                </p>
+
+                <div className="project-tech-stack">
+                  {project.technologies.split(",").map((tech, i) => (
+                    <span key={i} className="tech-pill">
+                      {tech.trim()}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           ))}
         </div>
