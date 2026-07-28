@@ -88,7 +88,7 @@ export const config = {
             id: 11,
             title: "Retinal Screening — AI-Assisted Diabetic Retinopathy Detection",
             category: "AI / ML",
-            technologies: "Python, TensorFlow, Keras, Flask, Grad-CAM",
+            technologies: "Python, TensorFlow, Keras, CNN, Flask, Grad-CAM",
             description: "An educational web app that grades diabetic retinopathy (DR) severity from a single retina (fundus) photograph using a fine-tuned EfficientNetB0 CNN. Explains its reasoning with a Grad-CAM heatmap overlay. Built end-to-end with data pipeline, transfer learning, class weighting, and Flask deployment.",
             image: proj11,
             link: "https://github.com/Nazik2020/RetinaScan-AI"
