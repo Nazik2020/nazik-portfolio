@@ -8,6 +8,7 @@ import proj7 from "./assets/hostelfix.jpg";
 import proj8 from "./assets/freelance_predictor.jpg";
 import proj9 from "./assets/sportsperson_image_classifier.png";
 import proj10 from "./assets/customer_churn.png";
+import proj11 from "./assets/retinopathy.png";
 
 export const config = {
     developer: {
@@ -83,6 +84,15 @@ export const config = {
         }
     ],
     projects: [
+        {
+            id: 11,
+            title: "Retinal Screening — AI-Assisted Diabetic Retinopathy Detection",
+            category: "AI / ML",
+            technologies: "Python, TensorFlow, Keras, Flask, Grad-CAM",
+            description: "An educational web app that grades diabetic retinopathy (DR) severity from a single retina (fundus) photograph using a fine-tuned EfficientNetB0 CNN. Explains its reasoning with a Grad-CAM heatmap overlay. Built end-to-end with data pipeline, transfer learning, class weighting, and Flask deployment.",
+            image: proj11,
+            link: "https://lnkd.in/g8b7z2nm"
+        },
         {
             id: 10,
             title: "Bank Customer Churn Prediction (ANN)",

@@ -1,7 +1,7 @@
 import "./styles/Landing.css";
 import { config } from "../config";
 import profileImg from "../assets/profile.jpg";
-import cvPdf from "../assets/Mohamed_Nazik_CV (2).pdf";
+import cvPdf from "../assets/Mohamed Nazik CV .pdf";
 import { useState, useEffect } from "react";
 
 const titles = ["DATA SCIENTIST", "DATA ANALYST", "AI/ML ENGINEER"];
