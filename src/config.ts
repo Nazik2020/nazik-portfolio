@@ -91,7 +91,7 @@ export const config = {
             technologies: "Python, TensorFlow, Keras, Flask, Grad-CAM",
             description: "An educational web app that grades diabetic retinopathy (DR) severity from a single retina (fundus) photograph using a fine-tuned EfficientNetB0 CNN. Explains its reasoning with a Grad-CAM heatmap overlay. Built end-to-end with data pipeline, transfer learning, class weighting, and Flask deployment.",
             image: proj11,
-            link: "https://lnkd.in/g8b7z2nm"
+            link: "https://github.com/Nazik2020/RetinaScan-AI"
         },
         {
             id: 10,
@@ -196,7 +196,7 @@ export const config = {
             title: "DATA SCIENCE",
             description: "Machine Learning & Predictive Analytics",
             details: "Building predictive models, data pipelines, and analytics solutions using Python, TensorFlow, and Scikit-Learn. Specializing in regression, classification, and neural networks.",
-            tools: ["Python", "TensorFlow", "Scikit-Learn", "Pandas", "NumPy", "SQL", "MySQL", "Jupyter", "Google Colab", "Flask"]
+            tools: ["Python", "TensorFlow", "Keras", "CNN", "Scikit-Learn", "Pandas", "NumPy", "SQL", "MySQL", "Jupyter", "Google Colab", "Flask"]
         },
         design: {
             title: "ANALYTICS",
