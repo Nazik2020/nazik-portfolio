@@ -4,7 +4,7 @@ import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
 import Lenis from "lenis";
 import { FiMenu, FiX } from "react-icons/fi";
-import cvPdf from "../assets/Mohamed Nazik CV .pdf";
+import cvPdf from "../assets/Mohamed Nazik Resume.pdf";
 import "./styles/Navbar.css";
 
 gsap.registerPlugin(ScrollTrigger);
