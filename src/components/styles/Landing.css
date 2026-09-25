@@ -78,6 +78,20 @@
   font-family: "Space Grotesk", sans-serif;
 }
 
+.landing-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mobile-resume-btn {
+  display: none;
+}
+
+.mobile-br {
+  display: none;
+}
+
 .landing-name>span {
   color: #cab4f3;
   text-shadow: 0 0 20px rgba(202, 180, 243, 0.5);
@@ -490,8 +504,42 @@
     letter-spacing: 0.2em;
   }
 
+  .landing-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+  }
+
+  .desktop-space {
+    display: none;
+  }
+  
+  .mobile-br {
+    display: block;
+  }
+
   .landing-name {
     font-size: 36px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-resume-btn {
+    display: flex;
+    align-items: center;
+    color: #cab4f3;
+    text-decoration: none;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .mobile-resume-btn:hover {
+    color: #ffffff;
   }
 
   .landing-desc {

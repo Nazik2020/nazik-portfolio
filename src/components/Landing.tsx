@@ -1,7 +1,8 @@
 import "./styles/Landing.css";
 import { config } from "../config";
 import profileImg from "../assets/profile.jpg";
-import cvPdf from "../assets/Mohamed Nazik Resume.pdf";
+import cvPdf from "../assets/Mohamed Nazik.pdf";
+import { FiFileText } from "react-icons/fi";
 import { useState, useEffect } from "react";
 
 const titles = ["DATA SCIENTIST", "DATA ANALYST", "AI/ML ENGINEER"];
@@ -41,11 +42,17 @@ const Landing = () => {
         <div className="landing-container">
           {/* ── LEFT ── */}
           <div className="landing-left">
-            <p className="landing-tag">DATA SCIENCE • MACHINE LEARNING</p>
-            <h1 className="landing-name">
-              {config.developer.fullName.toUpperCase()},
-              <span>{currentText}<span className="typing-cursor">|</span></span>
-            </h1>
+            <p className="landing-tag">MACHINE LEARNING & ARTIFICIAL INTELLIGENCE</p>
+            <div className="landing-title-row">
+              <h1 className="landing-name">
+                <span className="name-part">MOHAMED<span className="desktop-space"> </span><br className="mobile-br"/>NAZIK</span>
+                <span className="typing-text">{currentText}<span className="typing-cursor">|</span></span>
+              </h1>
+              <a href={cvPdf} target="_blank" rel="noreferrer" className="mobile-resume-btn">
+                <FiFileText size={28} />
+                <span>RESUME</span>
+              </a>
+            </div>
             <p className="landing-desc">
               Third-year Computer Science undergraduate focused on Data Science and Machine Learning. Skilled in data analysis, predictive modeling, and dashboard development, with a passion for solving real-world problems using data. As a Microsoft Learn Student Ambassador, I actively engage in learning, sharing knowledge, and contributing to the tech community.
             </p>
