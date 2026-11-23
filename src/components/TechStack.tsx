@@ -34,6 +34,10 @@ const techList = [
   { name: "Django", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg", color: "#092E20" },
   { name: "PHP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg", color: "#777BB4" },
   { name: "Azure", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg", color: "#0078D4" },
+  { name: "Next.js", icon: null, color: "#111111" },
+  { name: "Dialogflow", icon: null, color: "#FF9800" },
+  { name: "Supabase", icon: null, color: "#3ECF8E" },
+  { name: "PostgreSQL", icon: null, color: "#4169E1" },
 ];
 
 // Determine valid image URLs for loading

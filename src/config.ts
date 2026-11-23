@@ -9,6 +9,7 @@ import proj8 from "./assets/freelance_predictor.jpg";
 import proj9 from "./assets/sportsperson_image_classifier.png";
 import proj10 from "./assets/customer_churn.png";
 import proj11 from "./assets/retinopathy.png";
+import proj12 from "./assets/nooki_poster.png";
 
 export const config = {
     developer: {
@@ -84,6 +85,15 @@ export const config = {
         }
     ],
     projects: [
+        {
+            id: 12,
+            title: "Nooki — Multilingual AI Shopping Assistant",
+            category: "Conversational AI",
+            technologies: "Dialogflow ES, Next.js, TypeScript, Supabase, PostgreSQL, Vercel, Multilingual NLP",
+            description: "A customer-facing multilingual AI shopping assistant deployed on the live NookMint ecommerce platform. Combines Google Dialogflow ES intent classification with custom English/Singlish/Sinhala NLP handling, fuzzy product search, and contextual multi-turn conversation memory backed by a live Supabase PostgreSQL catalogue. Supports real-time stock checks, dynamic pricing, variant lookup, and automated delivery & payment guidance.",
+            image: proj12,
+            link: "https://nook-mint.vercel.app"
+        },
         {
             id: 11,
             title: "Retinal Screening — AI-Assisted Diabetic Retinopathy Detection",
@@ -193,10 +203,10 @@ export const config = {
     },
     skills: {
         develop: {
-            title: "DATA SCIENCE",
-            description: "Machine Learning & Predictive Analytics",
-            details: "Building predictive models, data pipelines, and analytics solutions using Python, TensorFlow, and Scikit-Learn. Specializing in regression, classification, and neural networks.",
-            tools: ["Python", "TensorFlow", "Keras", "CNN", "Scikit-Learn", "Pandas", "NumPy", "SQL", "MySQL", "Jupyter", "Google Colab", "Flask"]
+            title: "DATA SCIENCE & AI",
+            description: "Machine Learning, NLP & Predictive Analytics",
+            details: "Building predictive models, conversational AI systems, and end-to-end data pipelines using Python, TensorFlow, Dialogflow, and modern full-stack architectures. Specializing in classification, deep learning, NLP, and intelligent assistants.",
+            tools: ["Python", "TensorFlow", "Keras", "CNN", "Dialogflow", "NLP", "Scikit-Learn", "Next.js", "TypeScript", "Supabase", "PostgreSQL", "Pandas", "NumPy", "SQL", "MySQL", "Jupyter", "Google Colab", "Flask"]
         },
         design: {
             title: "ANALYTICS",

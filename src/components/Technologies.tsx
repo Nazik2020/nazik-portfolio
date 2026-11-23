@@ -4,7 +4,8 @@ import {
   SiMysql, SiPostgresql, SiCplusplus, SiTypescript, SiC,
   SiMongodb, SiTableau, SiNodedotjs, SiFlask, SiDjango,
   SiVisualstudiocode, SiAnaconda, SiGooglecolab, SiJupyter, SiOpencv,
-  SiGit, SiGithub, SiMicrosoftazure, SiReact as SiReactNative
+  SiGit, SiGithub, SiMicrosoftazure, SiReact as SiReactNative,
+  SiDialogflow, SiNextdotjs, SiSupabase, SiVercel
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 import { TbSql, TbWaveSine } from "react-icons/tb";
@@ -17,6 +18,7 @@ const techStack = [
   { name: "NumPy", icon: <SiNumpy color="#013243" /> },
   { name: "Scikit-Learn", icon: <SiScikitlearn color="#F7931E" /> },
   { name: "TensorFlow", icon: <SiTensorflow color="#FF6F00" /> },
+  { name: "Dialogflow", icon: <SiDialogflow color="#FF9800" /> },
   { name: "OpenCV", icon: <SiOpencv color="#5C3EE8" /> },
   { name: "Wavelet", icon: <TbWaveSine color="#7A5AF8" /> },
   { name: "Seaborn", icon: <SiPython color="#4C72B0" /> },
@@ -28,6 +30,7 @@ const techStack = [
   { name: "Azure ML", icon: <SiMicrosoftazure color="#5EA0EF" /> },
   
   // Development & Web
+  { name: "Next.js", icon: <SiNextdotjs color="#ffffff" /> },
   { name: "React", icon: <SiReact color="#61DAFB" /> },
   { name: "React Native", icon: <SiReactNative color="#61DAFB" /> },
   { name: "TypeScript", icon: <SiTypescript color="#3178C6" /> },
@@ -40,10 +43,12 @@ const techStack = [
   { name: "Java", icon: <FaJava color="#ED8B00" /> },
   { name: "C", icon: <SiC color="#A8B9CC" /> },
   { name: "C++", icon: <SiCplusplus color="#00599C" /> },
+  { name: "Vercel", icon: <SiVercel color="#ffffff" /> },
   
   // Database & Tools
-  { name: "MySQL", icon: <SiMysql color="#4479A1" /> },
+  { name: "Supabase", icon: <SiSupabase color="#3ECF8E" /> },
   { name: "PostgreSQL", icon: <SiPostgresql color="#4169E1" /> },
+  { name: "MySQL", icon: <SiMysql color="#4479A1" /> },
   { name: "MongoDB", icon: <SiMongodb color="#47A248" /> },
   { name: "SQL", icon: <TbSql color="#CC2927" /> },
   { name: "Git", icon: <SiGit color="#F05032" /> },
