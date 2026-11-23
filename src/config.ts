@@ -10,6 +10,7 @@ import proj9 from "./assets/sportsperson_image_classifier.png";
 import proj10 from "./assets/customer_churn.png";
 import proj11 from "./assets/retinopathy.png";
 import proj12 from "./assets/nooki_poster.jpg";
+import proj13 from "./assets/aspirev_poster.png";
 
 export const config = {
     developer: {
@@ -93,6 +94,15 @@ export const config = {
             description: "A customer-facing multilingual AI shopping assistant deployed on the live NookMint ecommerce platform. Combines Google Dialogflow ES intent classification with custom English/Singlish/Sinhala NLP handling, fuzzy product search, and contextual multi-turn conversation memory backed by a live Supabase PostgreSQL catalogue. Supports real-time stock checks, dynamic pricing, variant lookup, and automated delivery & payment guidance.",
             image: proj12,
             link: "https://nook-mint.vercel.app"
+        },
+        {
+            id: 13,
+            title: "Aspirev — AI Career Intelligence & Multi-Vendor ATS Simulator",
+            category: "Full-Stack AI",
+            technologies: "Next.js 15, React 19, FastAPI, Python, PyTorch, Hugging Face (BERT & MiniLM), Docker, Express 5, MongoDB Atlas, Redis, BullMQ, Tailwind CSS, Azure",
+            description: "An end-to-end full-stack platform built to democratize ATS resume optimization for students. Features deep learning NER entity extraction (BERT), high-dimensional semantic matching (MiniLM embeddings), 5-vendor ATS simulation (Workday, Taleo, Greenhouse, iCIMS, Lever), Kanban application tracking, and asynchronous ML queue workers. Ranked top-tier on Google and Microsoft Bing with citations in Google AI Overviews.",
+            image: proj13,
+            link: "https://www.aspirev.com"
         },
         {
             id: 11,
@@ -205,8 +215,8 @@ export const config = {
         develop: {
             title: "DATA SCIENCE & AI",
             description: "Machine Learning, NLP & Predictive Analytics",
-            details: "Building predictive models, conversational AI systems, and end-to-end data pipelines using Python, TensorFlow, Dialogflow, and modern full-stack architectures. Specializing in classification, deep learning, NLP, and intelligent assistants.",
-            tools: ["Python", "TensorFlow", "Keras", "CNN", "Dialogflow", "NLP", "Scikit-Learn", "Next.js", "TypeScript", "Supabase", "PostgreSQL", "Pandas", "NumPy", "SQL", "MySQL", "Jupyter", "Google Colab", "Flask"]
+            details: "Building predictive models, deep learning NLP pipelines, conversational AI systems, and microservice full-stack architectures using Python, PyTorch, Hugging Face Transformers, FastAPI, Docker, and modern web frameworks.",
+            tools: ["Python", "PyTorch", "Hugging Face", "FastAPI", "Docker", "TensorFlow", "Keras", "CNN", "BERT", "Dialogflow", "NLP", "Scikit-Learn", "Next.js", "TypeScript", "Express", "MongoDB", "Redis", "Supabase", "PostgreSQL", "Pandas", "NumPy", "SQL", "Flask", "Azure"]
         },
         design: {
             title: "ANALYTICS",

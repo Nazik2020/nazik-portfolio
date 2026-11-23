@@ -38,6 +38,12 @@ const techList = [
   { name: "Dialogflow", icon: null, color: "#FF9800" },
   { name: "Supabase", icon: null, color: "#3ECF8E" },
   { name: "PostgreSQL", icon: null, color: "#4169E1" },
+  { name: "PyTorch", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg", color: "#EE4C2C" },
+  { name: "FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg", color: "#009688" },
+  { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg", color: "#2496ED" },
+  { name: "Hugging Face", icon: null, color: "#FFD21E" },
+  { name: "Redis", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg", color: "#DC382D" },
+  { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", color: "#47A248" },
 ];
 
 // Determine valid image URLs for loading
