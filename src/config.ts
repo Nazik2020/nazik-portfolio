@@ -9,7 +9,7 @@ import proj8 from "./assets/freelance_predictor.jpg";
 import proj9 from "./assets/sportsperson_image_classifier.png";
 import proj10 from "./assets/customer_churn.png";
 import proj11 from "./assets/retinopathy.png";
-import proj12 from "./assets/nooki_poster.png";
+import proj12 from "./assets/nooki_poster.jpg";
 
 export const config = {
     developer: {

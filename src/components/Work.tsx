@@ -28,7 +28,7 @@ const Work = () => {
               {/* Top: Image + Category Badge */}
               <div className="project-card-image">
                 <a href={project.link} target="_blank" rel="noreferrer">
-                  <img src={project.image} alt={project.title} />
+                  <img src={project.image} alt={project.title} loading="lazy" decoding="async" />
                 </a>
                 <div className="project-category-badge">
                   {project.category}
