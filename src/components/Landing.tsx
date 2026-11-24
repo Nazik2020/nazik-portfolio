@@ -1,7 +1,7 @@
 import "./styles/Landing.css";
 import { config } from "../config";
 import profileImg from "../assets/profile.jpg";
-import cvPdf from "../assets/Mohamed Nazik.pdf";
+import cvPdf from "../assets/Mohamed Nazik CV Nov.pdf";
 import { FiFileText } from "react-icons/fi";
 import { useState, useEffect } from "react";
 
