@@ -8,6 +8,7 @@ import Navbar from "./Navbar";
 import SocialIcons from "./SocialIcons";
 import Work from "./Work";
 import Technologies from "./Technologies";
+import Resume from "./Resume";
 import setSplitText from "./utils/splitText";
 
 
@@ -45,6 +46,7 @@ const MainContainer = () => {
       { selector: ".work-section", children: ".work-section-title, .project-card" }, 
       { selector: ".tech-section", children: ".section-title, .tech-item", multiRow: true }, 
       { selector: ".extra-section", children: ".section-title, .cert-card-interactive, .vol-card", delay: 0.2 }, 
+      { selector: ".resume-section", children: ".resume-header, .resume-item-row", delay: 0.2 }, 
       { selector: ".contact-section", children: ".contact-col" }
     ];
 
@@ -139,6 +141,8 @@ const MainContainer = () => {
       <Certifications />
       <div style={{ height: "2cm" }}></div>
       <Volunteering />
+      <div style={{ height: "2cm" }}></div>
+      <Resume />
       <Contact />
     </div>
   );

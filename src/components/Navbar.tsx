@@ -4,7 +4,6 @@ import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
 import Lenis from "lenis";
 import { FiMenu, FiX } from "react-icons/fi";
-import cvPdf from "../assets/Mohamed Nazik CV Nov.pdf";
 import "./styles/Navbar.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -122,7 +121,7 @@ const Navbar = () => {
             </a>
           </li>
           <li className="nav-resume">
-            <a href={cvPdf} target="_blank" rel="noopener noreferrer">
+            <a data-href="#resume" href="#resume">
               <HoverLinks text="Resume" />
             </a>
           </li>

@@ -1,7 +1,6 @@
 import "./styles/Landing.css";
 import { config } from "../config";
 import profileImg from "../assets/profile.jpg";
-import cvPdf from "../assets/Mohamed Nazik CV Nov.pdf";
 import { FiFileText } from "react-icons/fi";
 import { useState, useEffect } from "react";
 
@@ -33,6 +32,14 @@ const Landing = () => {
     return () => clearTimeout(timeout);
   }, [currentText, isDeleting, currentTitleIndex]);
 
+  const scrollToResume = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const resumeEl = document.getElementById("resume");
+    if (resumeEl) {
+      resumeEl.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <section className="landing-section" id="about">
@@ -48,7 +55,7 @@ const Landing = () => {
                 <span className="name-part">MOHAMED<span className="desktop-space"> </span><br className="mobile-br"/>NAZIK</span>
                 <span className="typing-text">{currentText}<span className="typing-cursor">|</span></span>
               </h1>
-              <a href={cvPdf} target="_blank" rel="noreferrer" className="mobile-resume-btn">
+              <a href="#resume" onClick={scrollToResume} className="mobile-resume-btn">
                 <FiFileText size={28} />
                 <span>RESUME</span>
               </a>
@@ -106,9 +113,8 @@ const Landing = () => {
 
       {/* Global Floating Badges */}
       <a
-        href={cvPdf}
-        target="_blank"
-        rel="noreferrer"
+        href="#resume"
+        onClick={scrollToResume}
         className="badge-resume"
       >
         <span style={{
