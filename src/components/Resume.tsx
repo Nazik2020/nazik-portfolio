@@ -17,7 +17,6 @@ const resumeList: ResumeItem[] = [
   {
     id: "data-scientist-intern",
     title: "Data Scientist Intern",
-    badge: "Primary career focus",
     subtitle: "Data Science, Predictive Modelling & Analytics",
     file: cvDataScientist,
     downloadName: "Mohamed_Nazik_Data_Scientist_Intern.pdf",
