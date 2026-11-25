@@ -11,6 +11,7 @@ import proj10 from "./assets/customer_churn.png";
 import proj11 from "./assets/retinopathy.png";
 import proj12 from "./assets/nooki_poster.jpg";
 import proj13 from "./assets/aspirev_poster.png";
+import proj14 from "./assets/LogGuard AI.png";
 
 export const config = {
     developer: {
@@ -86,6 +87,15 @@ export const config = {
         }
     ],
     projects: [
+        {
+            id: 14,
+            title: "LogGuard AI — Hybrid AI-Powered Log Classification & Analytics System",
+            category: "AI / ML",
+            technologies: "Python, FastAPI, Sentence Transformers (MiniLM), PyTorch, Scikit-Learn (DBSCAN), GroqCloud (LLM), Streamlit, Plotly, Regex",
+            description: "An end-to-end hybrid AI application that classifies enterprise software logs into operational event categories (Security Alerts, Critical Errors, HTTP Status, Workflow Errors). Combines a 3-tier routing architecture: local compiled Regex rules, MiniLM embeddings with Logistic Regression (99% accuracy), and GroqCloud LLM inference for scarce legacy events. Features real-time log ingestion, DBSCAN pattern discovery, confidence-aware rejection, and an interactive FastAPI & Streamlit analytics dashboard.",
+            image: proj14,
+            link: "https://github.com/Nazik2020/logguard-ai-hybrid-log-classifier"
+        },
         {
             id: 12,
             title: "Nooki — Multilingual AI Shopping Assistant",
@@ -215,8 +225,8 @@ export const config = {
         develop: {
             title: "DATA SCIENCE & AI",
             description: "Machine Learning, NLP & Predictive Analytics",
-            details: "Building predictive models, deep learning NLP pipelines, conversational AI systems, and microservice full-stack architectures using Python, PyTorch, Hugging Face Transformers, FastAPI, Docker, and modern web frameworks.",
-            tools: ["Python", "PyTorch", "Hugging Face", "FastAPI", "Docker", "TensorFlow", "Keras", "CNN", "BERT", "Dialogflow", "NLP", "Scikit-Learn", "Next.js", "TypeScript", "Express", "MongoDB", "Redis", "Supabase", "PostgreSQL", "Pandas", "NumPy", "SQL", "Flask", "Azure"]
+            details: "Building predictive models, deep learning NLP pipelines, hybrid log classification engines, conversational AI systems, and microservice full-stack architectures using Python, PyTorch, Hugging Face Transformers, Sentence-BERT, FastAPI, Streamlit, Docker, and modern web frameworks.",
+            tools: ["Python", "PyTorch", "Hugging Face", "Sentence Transformers", "FastAPI", "Streamlit", "Plotly", "DBSCAN", "GroqCloud", "Docker", "TensorFlow", "Keras", "CNN", "BERT", "Dialogflow", "NLP", "Scikit-Learn", "Next.js", "TypeScript", "Express", "MongoDB", "Redis", "Supabase", "PostgreSQL", "Pandas", "NumPy", "SQL", "Flask", "Azure"]
         },
         design: {
             title: "ANALYTICS",

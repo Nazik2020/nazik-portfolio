@@ -6,7 +6,8 @@ import {
   SiVisualstudiocode, SiAnaconda, SiGooglecolab, SiJupyter, SiOpencv,
   SiGit, SiGithub, SiMicrosoftazure, SiReact as SiReactNative,
   SiDialogflow, SiNextdotjs, SiSupabase, SiVercel,
-  SiPytorch, SiFastapi, SiDocker, SiHuggingface, SiRedis, SiExpress
+  SiPytorch, SiFastapi, SiDocker, SiHuggingface, SiRedis, SiExpress,
+  SiStreamlit, SiPlotly
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 import { TbSql, TbWaveSine } from "react-icons/tb";
@@ -38,6 +39,8 @@ const techStack = [
   { name: "React Native", icon: <SiReactNative color="#61DAFB" /> },
   { name: "TypeScript", icon: <SiTypescript color="#3178C6" /> },
   { name: "FastAPI", icon: <SiFastapi color="#009688" /> },
+  { name: "Streamlit", icon: <SiStreamlit color="#FF4B4B" /> },
+  { name: "Plotly", icon: <SiPlotly color="#3F4F75" /> },
   { name: "Node.js", icon: <SiNodedotjs color="#339933" /> },
   { name: "Express", icon: <SiExpress color="#ffffff" /> },
   { name: "Tailwind CSS", icon: <SiTailwindcss color="#06B6D4" /> },

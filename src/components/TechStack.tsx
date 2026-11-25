@@ -44,6 +44,8 @@ const techList = [
   { name: "Hugging Face", icon: null, color: "#FFD21E" },
   { name: "Redis", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg", color: "#DC382D" },
   { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", color: "#47A248" },
+  { name: "Streamlit", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/streamlit/streamlit-original.svg", color: "#FF4B4B" },
+  { name: "Plotly", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/plotly/plotly-original.svg", color: "#3F4F75" },
 ];
 
 // Determine valid image URLs for loading
